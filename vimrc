@@ -186,3 +186,4 @@ endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Thanks to http://amix.dk/vim/vimrc.html and the web in general ""
+"" http://dougblack.io/words/a-good-vimrc.html
