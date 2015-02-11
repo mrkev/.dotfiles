@@ -1,10 +1,17 @@
+# Variables
+
+SERVER=10.32.196.245
+
+
 # Global
 alias simpser='python -m SimpleHTTPServer'
 alias freakout='git commit -am "Quick push. No time for messages. This is an alias." && git push'
-alias server="ssh kevin@10.32.196.96"
+alias server="ssh kevin@10.32.196.245"
 alias ll='ls -al'
 alias ls='ls -l'
 alias ltr='ls -l -t -r' # ls command: long, sort by mod date, rev order
+alias latexclean='rm *.log *.aux *.pdf *.out'
+
 
 # For goodness
 alias o='open ./'
