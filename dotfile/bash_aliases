@@ -42,6 +42,10 @@ case "$OSTYPE" in
     ## OSX
     alias xmysql='/Applications/XAMPP/xamppfiles/bin/mysql'
     
+    # For showing hidden files
+    alias hidefiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder'
+    alias showfiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder'
+
     # For looks
     alias hidedesktop='defaults write com.apple.finder CreateDesktop false; killall Finder'
     alias showdesktop='defaults write com.apple.finder CreateDesktop true; killall Finder'
