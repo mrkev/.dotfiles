@@ -19,11 +19,11 @@ set whichwrap+=<,>,h,l                  " "
 
 inoremap jj <ESC>                       " Remap jj to escape in insert mode.
 
+set lazyredraw                          " redraw only when we need to (faster performance)
+
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
-
-set lazyredraw   " redraw only when we need to (faster performance)
  
 "Automatically cd into the directory that the file is in:
 autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
@@ -38,7 +38,6 @@ set so=7                            " Set 7 lines to the cursor - when moving ve
 set wildmenu                        " Turn on the WiLd menu
 set wildignore=*.o,*~,*.pyc         " Ignore compiled files
 set wildmode=longest:full,full      " complete to the longest common string first
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -56,7 +55,6 @@ set noswapfile
 colorscheme molokai               " Install at https://github.com/tomasr/molokai
 let g:molokai_original = 1        " match the original monokai background color
 set background=dark               " Let vim know we are on a dark terminal
-
 
 set showmatch                     " highlight matching [{()}] when text indicator is over them
 set mat=2                         " Blink 2 tenths of a second when matching brackets
@@ -143,7 +141,6 @@ function! VisualSelection(direction) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

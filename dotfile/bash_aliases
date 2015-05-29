@@ -1,17 +1,34 @@
 # Variables
 
-SERVER=10.32.196.245
-
+SERVER=10.32.196.75
 
 # Global
+# alias git="touch untitled; git"
 alias simpser='python -m SimpleHTTPServer'
 alias freakout='git commit -am "Quick push. No time for messages. This is an alias." && git push'
-alias server="ssh kevin@10.32.196.245"
+alias server="ssh kevin@10.32.196.75"
+alias csug="ssh keh222@csug05.csuglab.cornell.edu"
 alias ll='ls -al'
 alias ls='ls -l'
 alias ltr='ls -l -t -r' # ls command: long, sort by mod date, rev order
 alias latexclean='rm *.log *.aux *.pdf *.out'
+alias editprofile='vim ~/.bash_profile'
+alias atomshell='/opt/homebrew-cask/Caskroom/atom-shell/0.21.2/Atom.app/Contents/MacOS/Atom ./'
 
+function mkcd
+{
+  command mkdir $1 && cd $1
+}
+
+function pand 
+{
+  command pandoc ${1} -o ${1}.pdf && open ${1}.pdf
+}
+
+function gccc
+{
+  command gcc -o ${1} ${1}.c $$ ./${1}
+}
 
 # For goodness
 alias o='open ./'
