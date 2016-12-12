@@ -7,6 +7,9 @@
 # Custom prompt
 PS1="🍪 :\W "
 
+# Set terminal colors
+export TERM=screen-256color
+
 ## PATHS ###
 
 # Homebrew?
