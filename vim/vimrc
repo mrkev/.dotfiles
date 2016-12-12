@@ -20,6 +20,10 @@ Plugin 'VundleVim/Vundle.vim'
 
 call vundle#end()
 
+"" so airline powerline symbols work
+let g:airline_powerline_fonts=1
+let g:airline_theme='base16'
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -31,7 +35,7 @@ filetype indent on                      " "
 
 set autoread                            " Autoread files when changed externally
 
-set encoding=utf8                       " Set utf8 as standard encoding
+set encoding=utf-8                       " Set utf8 as standard encoding
 set ffs=unix,dos,mac                    " Use Unix as the standard file type
 
 set backspace=eol,start,indent          " Configure backspace so it acts as it should act
@@ -82,7 +86,7 @@ set noswapfile
 " UI BRUH
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 colorscheme molokai               " Install at https://github.com/tomasr/molokai
-"let g:molokai_original = 1        " match the original monokai background color
+let g:molokai_original = 1        " match the original monokai background color
 set background=dark               " Let vim know we are on a dark terminal
 
 set showmatch                     " highlight matching [{()}] when text indicator is over them
@@ -109,7 +113,7 @@ set colorcolumn=80                " Ruler on column 80
 set lbr                           " Linebreak on 500 characters
 set tw=500                        " "
 
-set ruler                         " Current position in lower left corner (not showing /:)
+"set ruler                         " Current position in lower left corner (not showing /:)
 
 nnoremap gV `[v`]                 " highlight last inserted text
 
@@ -122,10 +126,10 @@ set grepprg=grep\ -nH\ $*         " Needed for Syntax Highlighting
 """"""""""""
 " Folding
 """"""""""""
-  set foldenable          " enable folding
-  set foldlevelstart=10   " open most folds by default
-  set foldnestmax=10      " 10 nested fold max
-  set foldmethod=indent   " fold based on indent level
+set foldenable          " enable folding
+set foldlevelstart=10   " open most folds by default
+set foldnestmax=10      " 10 nested fold max
+set foldmethod=indent   " fold based on indent level
 
 " space open/closes folds
 " nnoremap <space> za
@@ -197,7 +201,7 @@ set smartcase                 " When searching try to be smart about cases
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set extra options when running in GUI mode
 if has ("gui_running")
-  set guifont=Bitstream\ Vera\ Sans\ Mono\ 12
+  set guifont=Source\ Code\ Pro\ for\ Powerline
   set guioptions-=T
   set guioptions+=e
   set t_Co=256
