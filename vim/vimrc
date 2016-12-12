@@ -1,7 +1,7 @@
 
 "" Necessary for Vundle to work
 
-set nocompatible                        " Necesary for lots of cool vim things
+set nocompatible              " Necesary for lots of cool vim things
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
@@ -11,6 +11,7 @@ call vundle#begin()
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'keith/tmux.vim' " Syntax highlighting for .tmux.conf
 
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
