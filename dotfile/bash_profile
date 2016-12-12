@@ -1,41 +1,47 @@
-case "$OSTYPE" in
-  darwin*)
-    ;; 
-  linux*)
-    echo "LINUX"
-    ;;
-  bsd*)
-    echo "BSD"
-    ;;
-  *)   
-    echo "unknown: $OSTYPE"
-    ;;
-esac
 
-# Custom prompt: http://osxdaily.com/2013/04/08/add-emoji-command-line-bash-prompt/
-# 		 http://osxdaily.com/2006/12/11/how-to-customize-your-terminal-prompt/
-
-PS1="🍪 :\W "
-
-###
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+### PROMPT ###
 
 # If not running interactively, don't do anything
-case $- in
-  *i*) ;;
-  *) return;;
-esac
+[ -z "$PS1" ] && return
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
+# Custom prompt
+PS1="🍪 :\W "
 
-# append to the history file, don't overwrite it
-shopt -s histappend
+## PATHS ###
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+# Homebrew?
+export PATH=~/.bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/X11/bin
+
+# Texlive
+export PATH="/usr/local/texlive/2015basic/bin/universal-darwin:$PATH"
+
+# Rust
+export PATH="/Users/Kevin/.cargo/bin:$PATH"
+### LOADERS
+
+# OPAM configuration
+. /Users/Kevin/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+
+# NVM
+export NVM_DIR="/Users/Kevin/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# mysql vanilla
+PATH=${PATH}:/usr/local/mysql/bin
+
+# Go
+# export GOROOT=/usr/lcoal/opt/go/libexec
+export GOPATH="$HOME/Sites/go"
+export PATH="$PATH:$GOPATH/bin"
+
+# RVM things
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+### History ###
+
+HISTCONTROL=ignoreboth # dont include duplicate lines + lines starting with space
+shopt -s histappend # append to the history file, don't overwrite it
 HISTSIZE=1000
 HISTFILESIZE=2000
 
@@ -43,40 +49,31 @@ HISTFILESIZE=2000
 # match all files and zero or more directories and subdirectories.
 #shopt -s globstar
 
-# make less more friendly for non-text input files, see lesspipe(1)
-#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-  alias ls='ls -G'
-  #alias dir='dir --color=auto'
-  #alias vdir='vdir --color=auto'
-  #alias grep='grep --color=auto'
-  #alias fgrep='fgrep --color=auto'
-  #alias egrep='egrep --color=auto'
-fi
+### Other Sources ###
 
 # Alias definitions.
-if [ -f ~/.bash_aliases ]; then
-  . ~/.bash_aliases
-fi
+[ -f "$HOME/.bash_aliases" ] && . "$HOME/.bash_aliases"
 
-# Paths in different file, casue they are more computer-specific
-if [ -f ~/.bash_paths ]; then
-   . ~/.bash_paths
-fi
+# Source .bashrc
+[ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
 
-###
-
-# Color: http://stackoverflow.com/questions/1550288/mac-os-x-terminal-colors
-export CLICOLOR=1
-# export LSCOLORS=GxFxCxDxBxegedabagaced
-export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+### Misc ###
 
 # For more github searches on Homebrew
 export HOMEBREW_GITHUB_API_TOKEN=edc857c1e994cabab884168ed8983da5e781cbe5
 
-# Ruby env?
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# Git autocomplete branch names
+[ -f "$HOME/.git-completion.bash" ] && . "$HOME/.git-completion.bash"
+
+# For playing video on terminal using libcaca
+CACA_DRIVER=ncurses
+
+# OPAM configuration
+. /Users/Kevin/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+
+# iTerm2 shell integration
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+### for the lolz ###
+date | figlet | lolcat
 

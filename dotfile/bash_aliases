@@ -1,18 +1,19 @@
-# Variables
-
-SERVER=10.32.196.75
 
 # Global
 # alias git="touch untitled; git"
 alias simpser='python -m SimpleHTTPServer'
 alias freakout='git commit -am "Quick push. No time for messages. This is an alias." && git push'
-alias server="ssh kevin@10.32.196.75"
 alias csug="ssh keh222@csug05.csuglab.cornell.edu"
 alias ll='ls -al'
 alias ls='ls -l'
 alias ltr='ls -l -t -r' # ls command: long, sort by mod date, rev order
+alias t='tmux'
+alias g='git'
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
 alias latexclean='rm *.log *.aux *.pdf *.out'
-alias editprofile='vim ~/.bash_profile'
 alias atomshell='/opt/homebrew-cask/Caskroom/atom-shell/0.21.2/Atom.app/Contents/MacOS/Atom ./'
 
 function mkcd
@@ -20,7 +21,7 @@ function mkcd
   command mkdir $1 && cd $1
 }
 
-function pand 
+function pand
 {
   command pandoc ${1} -o ${1}.pdf && open ${1}.pdf
 }
@@ -41,7 +42,7 @@ case "$OSTYPE" in
   darwin*)
     ## OSX
     alias xmysql='/Applications/XAMPP/xamppfiles/bin/mysql'
-    
+
     # For showing hidden files
     alias hidefiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder'
     alias showfiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder'
@@ -49,18 +50,19 @@ case "$OSTYPE" in
     # For looks
     alias hidedesktop='defaults write com.apple.finder CreateDesktop false; killall Finder'
     alias showdesktop='defaults write com.apple.finder CreateDesktop true; killall Finder'
-    
+
     # For killing and recovering the dock
     alias hidedock='defaults write com.apple.Dock autohide-delay -float 1000 && killall Dock'
     alias showdock='defaults delete com.apple.Dock autohide-delay && killall Dock'
-    ;; 
+    ;;
   linux*)
     echo "LINUX"
     ;;
   bsd*)
     echo "BSD"
     ;;
-  *)   
+  *)
     echo "unknown: $OSTYPE"
     ;;
 esac
+
