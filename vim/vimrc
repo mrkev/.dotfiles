@@ -1,11 +1,30 @@
+
+"" Necessary for Vundle to work
+
 set nocompatible                        " Necesary for lots of cool vim things
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+call vundle#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set history=700                         " Remember 700 lines of history
 
-filetype on                             " Enable file type detection
+" filetype on                             " Enable file type detection
 filetype plugin on                      " Enable filetype plugins
 filetype indent on                      " "
 
@@ -24,9 +43,18 @@ set lazyredraw                          " redraw only when we need to (faster pe
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
- 
+
 "Automatically cd into the directory that the file is in:
 autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
+
+" remove trailing whitespaces
+fun! <SID>StripTrailingWhitespaces()
+  let l = line(".")
+  let c = col(".")
+  %s/\s\+$//e
+  call cursor(l, c)
+  endfun
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -44,7 +72,7 @@ set wildmode=longest:full,full      " complete to the longest common string firs
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
-set nobackup 
+set nobackup
 set nowb
 set noswapfile
 
@@ -53,7 +81,7 @@ set noswapfile
 " UI BRUH
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 colorscheme molokai               " Install at https://github.com/tomasr/molokai
-let g:molokai_original = 1        " match the original monokai background color
+"let g:molokai_original = 1        " match the original monokai background color
 set background=dark               " Let vim know we are on a dark terminal
 
 set showmatch                     " highlight matching [{()}] when text indicator is over them
@@ -142,18 +170,25 @@ function! VisualSelection(direction) range
     let @" = l:saved_reg
 endfunction
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Explorer
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+map :mexp :e<space><C-d>
+" todo ctrl+p plugin
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Search
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-map <space> /                 " Map <Space> to / (search)
-map <c-space> ?               " Map Ctrl-<Space> to ? (backwards search)
+" map <space> /                 " Map <Space> to / (search)
+" map <c-space> ?               " Map Ctrl-<Space> to ? (backwards search)
 
 set incsearch                 " Makes search act like search in modern browsers
 set hlsearch                  " Highlight search results
 set ignorecase                " Ignore case when searching
-set smartcase                 " When searching try to be smart about cases 
+set smartcase                 " When searching try to be smart about cases
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -184,3 +219,6 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Thanks to http://amix.dk/vim/vimrc.html and the web in general ""
 "" http://dougblack.io/words/a-good-vimrc.html
+
+""""" fzf
+set rtp+=/usr/local/opt/fzf
