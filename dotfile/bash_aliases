@@ -15,6 +15,7 @@ alias gc='git commit'
 alias gp='git push'
 alias latexclean='rm *.log *.aux *.pdf *.out'
 alias atomshell='/opt/homebrew-cask/Caskroom/atom-shell/0.21.2/Atom.app/Contents/MacOS/Atom ./'
+alias :q='exit'
 
 function mkcd
 {
