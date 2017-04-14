@@ -1,28 +1,28 @@
+
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
 # Always run on tmux
 if [ -z "$TMUX" ]
 then
-  tmux
+  tmux new-session -t default || tmux new-session -s default
 else
 
-  stty -ixon
-
   ### PROMPT ###
-
-  # If not running interactively, don't do anything
-  [ -z "$PS1" ] && return
 
   # Custom prompt
   PS1="🍪 :\W "
 
   # Space expands commands before executing them
-  bind Space:magic-space
+  # bind Space:magic-space
+
   # Set terminal colors
   export TERM=screen-256color
 
   ## PATHS ###
 
   # Homebrew?
-  export PATH=~/.bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/X11/bin
+  export PATH="~/.bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/X11/bin"
 
   # Texlive
   export PATH="/usr/local/texlive/2015basic/bin/universal-darwin:$PATH"
@@ -31,12 +31,8 @@ else
   export PATH="/Users/Kevin/.cargo/bin:$PATH"
   ### LOADERS
 
-  # OPAM configuration
-  . /Users/Kevin/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
-
-  # NVM
-  export NVM_DIR="/Users/Kevin/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+  # ~/.bin
+  export PATH="/Users/Kevin/.bin:$PATH"
 
   # mysql vanilla
   PATH=${PATH}:/usr/local/mysql/bin
@@ -45,6 +41,10 @@ else
   # export GOROOT=/usr/lcoal/opt/go/libexec
   export GOPATH="$HOME/Sites/go"
   export PATH="$PATH:$GOPATH/bin"
+
+  # NVM
+  export NVM_DIR="/Users/Kevin/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
   # RVM things
   [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
@@ -79,12 +79,6 @@ else
 
   # For playing video on terminal using libcaca
   CACA_DRIVER=ncurses
-
-  # OPAM configuration
-  . /Users/Kevin/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
-
-  # iTerm2 shell integration
-  test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
   ### for the lolz ###
   date | figlet | lolcat

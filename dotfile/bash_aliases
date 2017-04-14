@@ -17,6 +17,8 @@ alias latexclean='rm *.log *.aux *.pdf *.out'
 alias atomshell='/opt/homebrew-cask/Caskroom/atom-shell/0.21.2/Atom.app/Contents/MacOS/Atom ./'
 alias :q='exit'
 
+alias :r='tmux movew -r'
+
 function mkcd
 {
   command mkdir $1 && cd $1
