@@ -149,13 +149,13 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>388 363 620 392 0 0 1440 877 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
-	<string>49 296 599 388 0 0 1440 877 </string>
+	<string>49 296 606 456 0 0 1440 900 </string>
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>275 87 918 495 0 0 1440 900 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>99 293 592 584 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>155 93 650 452 0 0 1440 877 </string>
+	<string>155 94 650 452 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>183 68 570 451 0 0 1440 878 </string>
 	<key>New Bookmarks</key>
@@ -909,6 +909,8 @@
 	<integer>0</integer>
 	<key>NoSyncHaveShownPromoWithId_4</key>
 	<true/>
+	<key>NoSyncHaveWarnedAboutIncompatibleSoftware</key>
+	<true/>
 	<key>NoSyncInstallationId</key>
 	<string>F65A0DE9-667B-4757-9D64-5C4587354BE7</string>
 	<key>NoSyncLastTipTime</key>
@@ -1006,7 +1008,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-12-12T08:29:47Z</date>
+	<date>2017-09-03T05:58:23Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -1057,9 +1059,11 @@
 	<string>/-+\~_.</string>
 	<key>findIgnoreCase_iTerm</key>
 	<true/>
+	<key>findMode_iTerm</key>
+	<integer>0</integer>
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.12</string>
+	<string>3.1.beta.8</string>
 </dict>
 </plist>

@@ -23,12 +23,12 @@ Plugin 'leafgarland/typescript-vim' " typescript syntax
 Plugin 'quramy/tsuquyomi' " typescript extra features
 call vundle#end()
 
-
 "" VimPlug (for some plugins that need compiling)
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'nightsense/vim-crunchbang'
 call plug#end()
 
 
@@ -91,9 +91,8 @@ map j gj
 map k gk
 
 " Make it so deleting doesnt store to the buffer
-nnoremap <leader>d "_d
-vnoremap <leader>d "_d
-vnoremap <leader>p "_dP
+noremap <leader>d "_d
+noremap dd "_dd
 
 "Automatically cd into the directory that the file is in:
 autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
@@ -125,14 +124,15 @@ set noswapfile
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UI BRUH
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-colorscheme guan                  " Install at https://github.com/tomasr/molokai
-let g:molokai_original = 1        " match the original monokai background color
+colorscheme molokai
+"colorscheme molokai " Install at https://github.com/tomasr/molokai
+"let g:molokai_original = 1        " match the original monokai background color
 set background=dark               " Let vim know we are on a dark terminal
 
 set showmatch                     " highlight matching [{()}] when text indicator is over them
 set mat=2                         " Blink 2 tenths of a second when matching brackets
 
-set cmdheight=1                   " Height of the command bar
+"set cmdheight=1                   " Height of the command bar
 set laststatus=2                  " Always show the status line
 "set shortmess=a                   " Decrease Hit ENTER to continue message size
 
@@ -142,7 +142,6 @@ set number                        " Show line numbers
 set cul                           " Highlight current line
 
 set smarttab                      " Be smart when using tabs ;)
-set expandtab                     " make TAB a shortcut for spaces
 set tabstop=2                     " 2 visual spaces per TAB
 set softtabstop=2                 " 2 spaces in tab when editing
 set shiftwidth=2                  " "
@@ -238,3 +237,40 @@ endif
 
 """"" fzf
 set rtp+=/usr/local/opt/fzf
+" ## added by OPAM user-setup for vim / base ## 93ee63e278bdfc07d1139a748ed3fff2 ## you can edit, but keep this line
+let s:opam_share_dir = system("opam config var share")
+let s:opam_share_dir = substitute(s:opam_share_dir, '[\r\n]*$', '', '')
+
+let s:opam_configuration = {}
+
+function! OpamConfOcpIndent()
+  execute "set rtp^=" . s:opam_share_dir . "/ocp-indent/vim"
+endfunction
+let s:opam_configuration['ocp-indent'] = function('OpamConfOcpIndent')
+
+function! OpamConfOcpIndex()
+  execute "set rtp+=" . s:opam_share_dir . "/ocp-index/vim"
+endfunction
+let s:opam_configuration['ocp-index'] = function('OpamConfOcpIndex')
+
+function! OpamConfMerlin()
+  let l:dir = s:opam_share_dir . "/merlin/vim"
+  execute "set rtp+=" . l:dir
+endfunction
+let s:opam_configuration['merlin'] = function('OpamConfMerlin')
+
+let s:opam_packages = ["ocp-indent", "ocp-index", "merlin"]
+let s:opam_check_cmdline = ["opam list --installed --short --safe --color=never"] + s:opam_packages
+let s:opam_available_tools = split(system(join(s:opam_check_cmdline)))
+for tool in s:opam_packages
+  " Respect package order (merlin should be after ocp-index)
+  if count(s:opam_available_tools, tool) > 0
+    call s:opam_configuration[tool]()
+  endif
+endfor
+" ## end of OPAM user-setup addition for vim / base ## keep this line
+" ## added by OPAM user-setup for vim / ocp-indent ## c2e92acc119ec23ec0ef0d921f77cbd3 ## you can edit, but keep this line
+if count(s:opam_available_tools,"ocp-indent") == 0
+  source "/Users/Kevin/.opam/4.05.0/share/vim/syntax/ocp-indent.vim"
+endif
+" ## end of OPAM user-setup addition for vim / ocp-indent ## keep this line

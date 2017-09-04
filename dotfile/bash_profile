@@ -1,11 +1,10 @@
-
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
 # Always run on tmux
 if [ -z "$TMUX" ]
 then
-  tmux new-session -t default || tmux new-session -s default
+  tmux -2 new-session -t default || tmux -CC -2 new-session -s default
 else
 
   ### PROMPT ###
@@ -17,8 +16,8 @@ else
   # bind Space:magic-space
 
   # Set terminal colors
-  export TERM=screen-256color
-
+  # export TERM=screen-256color
+  export TERM="xterm-256color"
   ## PATHS ###
 
   # Homebrew?
@@ -41,10 +40,6 @@ else
   # export GOROOT=/usr/lcoal/opt/go/libexec
   export GOPATH="$HOME/Sites/go"
   export PATH="$PATH:$GOPATH/bin"
-
-  # NVM
-  export NVM_DIR="/Users/Kevin/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
   # RVM things
   [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
@@ -84,3 +79,8 @@ else
   date | figlet | lolcat
 
 fi
+
+# OPAM configuration
+. /Users/Kevin/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+ export NVM_DIR="$HOME/.nvm"
+  . "/usr/local/opt/nvm/nvm.sh"
