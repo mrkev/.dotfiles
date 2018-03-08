@@ -4,20 +4,19 @@
 # Always run on tmux
 if [ -z "$TMUX" ]
 then
-  tmux -2 new-session -t default || tmux -CC -2 new-session -s default
+  _trap_exit() { tmux detach -t default; }
+  trap _trap_exit EXIT
+  tmux -2 new-session -t default || tmux -2 new-session -s default
 else
 
-  ### PROMPT ###
-
-  # Custom prompt
-  PS1="🍪 :\W "
+  source ~/.bash_prompt
 
   # Space expands commands before executing them
   # bind Space:magic-space
 
   # Set terminal colors
-  # export TERM=screen-256color
   export TERM="xterm-256color"
+  
   ## PATHS ###
 
   # Homebrew?
@@ -28,8 +27,7 @@ else
 
   # Rust
   export PATH="/Users/Kevin/.cargo/bin:$PATH"
-  ### LOADERS
-
+  
   # ~/.bin
   export PATH="/Users/Kevin/.bin:$PATH"
 
@@ -49,8 +47,9 @@ else
 
   HISTCONTROL=ignoreboth:erasedups # dont include duplicate lines + lines starting with space
   shopt -s histappend # append to the history file, don't overwrite it
-  HISTSIZE=1000
-  HISTFILESIZE=2000
+  HISTSIZE=1000000
+  HISTFILESIZE=200000
+  export PROMPT_COMMAND='history -a' # This will record each command to the history file as it is issued.
 
   # If set, the pattern "**" used in a pathname expansion context will
   # match all files and zero or more directories and subdirectories.
@@ -63,6 +62,8 @@ else
 
   # Source .bashrc
   [ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
+  
+  [ -f "$HOME/.mysql_profile" ] && . "$HOME/.mysql_profile"
 
   ### Misc ###
 
@@ -84,3 +85,6 @@ fi
 . /Users/Kevin/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
  export NVM_DIR="$HOME/.nvm"
   . "/usr/local/opt/nvm/nvm.sh"
+export PATH="/usr/local/sbin:$PATH"
+eval $(opam config env)
+

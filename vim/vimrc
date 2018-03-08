@@ -29,6 +29,7 @@ call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'nightsense/vim-crunchbang'
+" Plug 'tpope/vim-abolish'
 call plug#end()
 
 

@@ -13,6 +13,8 @@ alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
 alias gp='git push'
+alias checkout='git checkout'
+alias gm='git checkout master'
 alias vim="nvim"
 alias vi="nvim"
 alias oldvim="vim"
@@ -21,11 +23,32 @@ alias atomshell='/opt/homebrew-cask/Caskroom/atom-shell/0.21.2/Atom.app/Contents
 alias :q='exit'
 
 alias :r='tmux movew -r'
+alias venv='source venv/bin/activate'
+alias mysqlstart='sudo /usr/local/mysql/support-files/mysql.server start'
+alias mysqlstop='sudo /usr/local/mysql/support-files/mysql.server stop'
+alias buildtest='ocamlbuild  -use-menhir -pkgs oUnit,str,yojson,ANSITerminal staff_test.byte'
+
+# 3110
+function checktypess
+{
+  command cd ./$1 && ./checktypes.sh; cd ..
+}
+
+function youtubemp3
+{
+  command youtube-dl --extract-audio --audio-format=mp3 $1
+}
 
 function mkcd
 {
   command mkdir $1 && cd $1
 }
+
+function when
+{
+  command history | grep $1
+}
+
 
 function pand
 {
