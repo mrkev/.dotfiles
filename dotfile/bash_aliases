@@ -39,6 +39,16 @@ function youtubemp3
   command youtube-dl --extract-audio --audio-format=mp3 $1
 }
 
+function youtubeaac
+{
+  command youtube-dl --extract-audio --audio-format=aac $1
+}
+
+function youtubewav
+{
+  command youtube-dl --extract-audio --audio-format=wav $1
+}
+
 function mkcd
 {
   command mkdir $1 && cd $1
